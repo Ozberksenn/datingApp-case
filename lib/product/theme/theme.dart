@@ -16,6 +16,10 @@ ThemeData dark = ThemeData(
     filled: true,
     fillColor: AppColors.grey,
     border: OutlineInputBorder(borderRadius: CustomRadius.radius20),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: CustomRadius.radius20,
+      borderSide: BorderSide(color: AppColors.white, width: 1),
+    ),
     suffixIconColor: AppColors.white,
     hintStyle: TextStyle(fontSize: 14, color: AppColors.lightGrey),
   ),

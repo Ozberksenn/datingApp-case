@@ -4,7 +4,8 @@ import 'padding.dart';
 import 'radius.dart';
 
 class Button extends StatelessWidget {
-  const Button({super.key});
+  final String name;
+  const Button({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class Button extends StatelessWidget {
         color: AppColors.buttonColor,
         borderRadius: CustomRadius.radius18,
       ),
-      child: Align(alignment: Alignment.center, child: Text("Giriş Yap")),
+      child: Align(alignment: Alignment.center, child: Text(name)),
     );
   }
 }

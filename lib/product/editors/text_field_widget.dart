@@ -23,7 +23,7 @@ class TextFieldWidget extends StatelessWidget {
                 : null,
         suffixIcon:
             suffixIcon != null
-                ? Icon(suffixIcon, color: AppColors.grey, size: 22)
+                ? Icon(suffixIcon, color: AppColors.lightGrey, size: 22)
                 : null,
       ),
     );
