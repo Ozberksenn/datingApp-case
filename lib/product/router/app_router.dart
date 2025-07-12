@@ -1,3 +1,4 @@
+import 'package:datingapp/features/view/home/home_view.dart';
 import 'package:datingapp/features/view/login/login_view.dart';
 import 'package:datingapp/features/view/register/register_view.dart';
 import 'package:go_router/go_router.dart';
@@ -5,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.path(AppRoutes.register),
+  initialLocation: AppRoutes.path(AppRoutes.login),
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.path(AppRoutes.login),
@@ -14,6 +15,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.path(AppRoutes.register),
       builder: (context, state) => const RegisterView(),
+    ),
+    GoRoute(
+      path: AppRoutes.path(AppRoutes.home),
+      builder: (context, state) => const HomeView(),
     ),
   ],
 );

@@ -2,7 +2,9 @@ import 'package:datingapp/features/widgets/custom_view.dart';
 import 'package:datingapp/features/widgets/padding.dart';
 import 'package:datingapp/features/widgets/social_media.dart';
 import 'package:datingapp/product/constants/app_fonts.dart';
+import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../product/editors/text_field_widget.dart';
 import '../../widgets/button.dart';
 
@@ -50,7 +52,13 @@ class LoginView extends StatelessWidget {
           ),
           // UnderlineTextWidget(text: "Şifremi Unuttum"),
           CustomSizedBox.paddingHeight(heightValue: 24.0),
-          SizedBox(width: double.infinity, child: Button(name: "Giriş Yap")),
+          SizedBox(
+            width: double.infinity,
+            child: Button(
+              name: "Giriş Yap",
+              onTap: () => context.push(AppRoutes.path(AppRoutes.home)),
+            ),
+          ),
           CustomSizedBox.paddingHeight(heightValue: 36.0),
           SocialMediaWidget(),
           CustomSizedBox.paddingHeight(heightValue: 36.0),
@@ -63,10 +71,13 @@ class LoginView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               CustomSizedBox.paddingWidth(widthValue: 6.0),
-              Text(
-                "Kayıt Ol",
-                style: Theme.of(context).textTheme.titleSmall,
-                textAlign: TextAlign.center,
+              InkWell(
+                onTap: () => context.push(AppRoutes.path(AppRoutes.register)),
+                child: Text(
+                  "Kayıt Ol",
+                  style: Theme.of(context).textTheme.titleSmall,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),
