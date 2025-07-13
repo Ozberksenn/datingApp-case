@@ -7,4 +7,6 @@ class AppFonts {
   static final greyText = AppTheme.darkTheme.textTheme.labelMedium!.copyWith(
     color: AppColors.lightGrey,
   );
+  static final movieDescriptionText = AppTheme.darkTheme.textTheme.bodySmall!
+      .copyWith(color: AppColors.lightGrey);
 }

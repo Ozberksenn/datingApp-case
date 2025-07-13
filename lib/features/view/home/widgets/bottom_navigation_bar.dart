@@ -10,7 +10,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: context.dynamicHeight(0.15),
       color: AppColors.black,
       width: context.dynamicWidth(1),
       child: Row(
@@ -39,7 +39,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         padding: ConstEdgeInsets.padding16(),
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: AppColors.lightGrey),
-          borderRadius: CustomRadius.radius20,
+          borderRadius: CustomRadius.radius28,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
