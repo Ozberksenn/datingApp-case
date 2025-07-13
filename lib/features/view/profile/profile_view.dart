@@ -11,31 +11,34 @@ class ProfieView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: profileAppBar(context),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ProfileCard(),
-          CustomSizedBox.paddingHeight(heightValue: 24.0),
-          Text(
-            "Beğendiğim Filmler",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          CustomSizedBox.paddingHeight(heightValue: 6.0),
-          CustomExpanded(
-            child: GridView.builder(
-              itemCount: 12,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                mainAxisExtent: 240,
-                crossAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                return MovieCard();
-              },
+      body: Padding(
+        padding: ConstEdgeInsets.padding4(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProfileCard(),
+            CustomSizedBox.paddingHeight(heightValue: 12.0),
+            Text(
+              "Beğendiğim Filmler",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-          ),
-        ],
+            CustomSizedBox.paddingHeight(heightValue: 6.0),
+            CustomExpanded(
+              child: GridView.builder(
+                itemCount: 12,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: 245,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return MovieCard();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
