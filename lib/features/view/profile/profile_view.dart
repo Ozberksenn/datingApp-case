@@ -1,4 +1,8 @@
+import 'package:datingapp/features/widgets/padding.dart';
 import 'package:flutter/material.dart';
+import 'widgets/movie_card.dart';
+import 'widgets/profile_app_bar.dart';
+import 'widgets/profile_card.dart';
 
 class ProfieView extends StatelessWidget {
   const ProfieView({super.key});
@@ -6,8 +10,33 @@ class ProfieView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("data")),
-      body: Column(children: [Text("data")]),
+      appBar: profileAppBar(context),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ProfileCard(),
+          CustomSizedBox.paddingHeight(heightValue: 24.0),
+          Text(
+            "Beğendiğim Filmler",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          CustomSizedBox.paddingHeight(heightValue: 6.0),
+          CustomExpanded(
+            child: GridView.builder(
+              itemCount: 12,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 240,
+                crossAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                return MovieCard();
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
