@@ -4,7 +4,6 @@ import 'package:datingapp/product/constants/app_colors.dart';
 import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/padding.dart';
 
 class AddPhotoView extends StatelessWidget {

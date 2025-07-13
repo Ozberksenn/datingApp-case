@@ -1,4 +1,6 @@
+import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../../product/constants/app_fonts.dart';
 import '../../../widgets/padding.dart';
@@ -25,7 +27,14 @@ class ProfileCard extends StatelessWidget {
       ),
       title: Text("Özberk Şen", style: Theme.of(context).textTheme.titleMedium),
       subtitle: Text("ID:245677", style: AppFonts.greyText),
-      trailing: Container(
+      trailing: addPhotoButton(context),
+    );
+  }
+
+  InkWell addPhotoButton(BuildContext context) {
+    return InkWell(
+      onTap: () => context.push(AppRoutes.path(AppRoutes.addPhoto)),
+      child: Container(
         padding: ConstEdgeInsets.padding12(),
         decoration: BoxDecoration(
           borderRadius: CustomRadius.radius12,

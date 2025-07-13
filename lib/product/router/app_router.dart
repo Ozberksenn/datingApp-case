@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.path(AppRoutes.addPhoto),
+  initialLocation: AppRoutes.path(AppRoutes.login),
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.path(AppRoutes.login),
