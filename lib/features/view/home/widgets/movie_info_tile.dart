@@ -1,14 +1,16 @@
+import 'package:datingapp/features/model/movie_model.dart';
 import 'package:flutter/material.dart';
 import '../../../../product/constants/app_fonts.dart';
 
 class MovieInfoTile extends StatelessWidget {
-  const MovieInfoTile({super.key});
+  final MovieModel movie;
+  const MovieInfoTile({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        "Günahkar Adam",
+        movie.title ?? "",
         style: Theme.of(context).textTheme.titleMedium,
       ),
       subtitle: RichText(

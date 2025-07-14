@@ -29,7 +29,7 @@ class Discover extends StatelessWidget {
                   child: Icon(CupertinoIcons.heart, color: AppColors.white),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
-                MovieInfoTile(),
+                MovieInfoTile(movie: movieList[index]),
               ],
             ),
           ),
@@ -40,13 +40,20 @@ class Discover extends StatelessWidget {
 }
 
 BoxDecoration conditionImage(MovieModel movie) {
+  // todo değiştireceğim en son.
   if (movie.poster != null && movie.poster != "") {
     return BoxDecoration(
       image: DecorationImage(
-        fit: BoxFit.cover,
-        image: NetworkImage(movie.poster!),
+        fit: BoxFit.contain,
+        image: AssetImage("assets/logo/SinFlixLogo.png"),
       ),
     );
+    // BoxDecoration(
+    //   image: DecorationImage(
+    //     fit: BoxFit.cover,
+    //     image: NetworkImage(movie.poster!),
+    //   ),
+    // );
   } else if (movie.images != [] && movie.images != null) {
     return BoxDecoration(
       image: DecorationImage(
