@@ -1,3 +1,4 @@
+import 'package:datingapp/features/view-model/home/home_state.dart';
 import 'package:datingapp/features/widgets/padding.dart';
 import 'package:flutter/material.dart';
 import '../../../product/storage/storage_service.dart';
@@ -6,7 +7,8 @@ import 'widgets/profile_app_bar.dart';
 import 'widgets/profile_card.dart';
 
 class ProfieView extends StatelessWidget {
-  const ProfieView({super.key});
+  final HomeState homeState;
+  const ProfieView({super.key, required this.homeState});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProfieView extends StatelessWidget {
             CustomSizedBox.paddingHeight(heightValue: 6.0),
             CustomExpanded(
               child: GridView.builder(
-                itemCount: 12,
+                itemCount: homeState.favouriteMovies?.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 10,
@@ -38,7 +40,11 @@ class ProfieView extends StatelessWidget {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) {
-                  return MovieCard();
+                  return homeState.favouriteMovies?[index] != null
+                      ? MovieCard(
+                        favoriteMovie: homeState.favouriteMovies![index],
+                      )
+                      : SizedBox();
                 },
               ),
             ),

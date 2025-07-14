@@ -15,14 +15,9 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeCubit()..getMovies(),
+      create: (_) => HomeCubit()..init(),
       child: BlocConsumer<HomeCubit, HomeState>(
         builder: (context, state) {
           final homeState = context.watch<HomeCubit>().state;
@@ -31,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
               index: homeState.currentIndex,
               children: [
                 Discover(movieList: homeState.movies ?? []),
-                ProfieView(),
+                ProfieView(homeState: homeState),
               ],
             ),
             bottomNavigationBar: BottomNavigationBarWidget(),

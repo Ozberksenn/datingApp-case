@@ -17,6 +17,11 @@ class HomeCubit extends Cubit<HomeState> {
 
   void changeTab(int newIndex) => emit(state.copyWith(currentIndex: newIndex));
 
+  init() {
+    getMovies();
+    getFavoriteMovies();
+  }
+
   Future<void> getMovies() async {
     ApiResponseModel response = await AppService.instance.getData(
       "/movie/list?page=1",
@@ -32,5 +37,32 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       emit(state.copyWith(isLoading: false, movies: []));
     }
+  }
+
+  Future<void> getFavoriteMovies() async {
+    ApiResponseModel response = await AppService.instance.getData(
+      "/movie/favorites",
+    );
+    if (response.isSuccess == true) {
+      if ((response.data['data'] as List).isNotEmpty) {
+        List<MovieModel> favoriteMovies =
+            (response.data['data'] as List)
+                .map((e) => MovieModel.fromJson(e))
+                .toList();
+        emit(state.copyWith(isLoading: true, favouriteMovies: favoriteMovies));
+      }
+    } else {
+      emit(state.copyWith(isLoading: false, favouriteMovies: []));
+    }
+  }
+
+  String replaceImagePath(String path) {
+    String imagePath = "";
+    if (path.contains("https")) {
+      imagePath = path;
+    } else if (path.contains("http")) {
+      imagePath = path.replaceAll("http", "https");
+    }
+    return imagePath;
   }
 }

@@ -1,6 +1,7 @@
 class MovieModel {
   final String id;
   final String? title;
+  final String? director;
   final String? year;
   final String? poster;
   final bool? isFavorite;
@@ -10,6 +11,7 @@ class MovieModel {
   MovieModel({
     required this.id,
     this.title,
+    this.director,
     this.year,
     this.poster,
     this.isFavorite,
@@ -21,6 +23,7 @@ class MovieModel {
     return MovieModel(
       id: json['id'],
       title: json['Title'],
+      director: json['Director'],
       year: json['Year'],
       poster: json['Poster'],
       isFavorite: json['isFavorite'],
@@ -33,6 +36,7 @@ class MovieModel {
     return {
       'id': id,
       'title': title,
+      'Director': director,
       'year': year,
       'poster': poster,
       'isFavorite': isFavorite,
