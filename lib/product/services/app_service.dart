@@ -36,16 +36,13 @@ class AppService {
 
   static AppService get instance => _instance;
 
-  Future<ApiResponseModel> getData(
-    String path,
-    Function(dynamic data) fromJson,
-  ) async {
+  Future<ApiResponseModel> getData(String path) async {
     try {
       final response = await dio.get(path);
       return ApiResponseModel(
-        data: fromJson(response.data),
         isSuccess: true,
         statusCode: response.statusCode,
+        data: response.data,
       );
     } on DioException catch (e) {
       return ApiResponseModel(

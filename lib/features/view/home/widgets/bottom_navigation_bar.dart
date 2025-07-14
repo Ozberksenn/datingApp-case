@@ -25,20 +25,25 @@ class BottomNavigationBarWidget extends StatelessWidget {
             context,
             title: "Anasayfa",
             icon:
-                homeCubit.state == 0 ? Icons.home_filled : Icons.home_outlined,
+                homeCubit.state.currentIndex == 0
+                    ? Icons.home_filled
+                    : Icons.home_outlined,
             onTap: () => context.read<HomeCubit>().changeTab(0),
             fontStyle:
-                homeCubit.state == 0
+                homeCubit.state.currentIndex == 0
                     ? Theme.of(context).textTheme.titleSmall
                     : Theme.of(context).textTheme.labelMedium,
           ),
           bottomNavigationItem(
             context,
             title: "Profil",
-            icon: homeCubit.state == 1 ? Icons.person : CupertinoIcons.person,
+            icon:
+                homeCubit.state.currentIndex == 1
+                    ? Icons.person
+                    : CupertinoIcons.person,
             onTap: () => context.read<HomeCubit>().changeTab(1),
             fontStyle:
-                homeCubit.state == 1
+                homeCubit.state.currentIndex == 1
                     ? Theme.of(context).textTheme.titleSmall
                     : Theme.of(context).textTheme.labelMedium,
           ),
