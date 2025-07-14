@@ -23,7 +23,10 @@ class ProfileCard extends StatelessWidget {
                 height: 50,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(image: NetworkImage(user.photoUrl!)),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(user.photoUrl!),
+                  ),
                 ),
               )
               : SizedBox(),

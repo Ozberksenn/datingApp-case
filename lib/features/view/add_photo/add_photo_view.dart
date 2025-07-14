@@ -1,10 +1,8 @@
 import 'package:datingapp/features/view/profile/widgets/profile_app_bar.dart';
-import 'package:datingapp/features/widgets/radius.dart';
-import 'package:datingapp/product/constants/app_colors.dart';
-import 'package:datingapp/product/extension/context_extension.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:datingapp/features/widgets/button.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/padding.dart';
+import 'widgets/upload_photo_card.dart';
 
 class AddPhotoView extends StatelessWidget {
   const AddPhotoView({super.key});
@@ -13,6 +11,14 @@ class AddPhotoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: profileAppBar(context, limitedOffer: false),
+      bottomNavigationBar: Container(
+        height: 60,
+        margin: ConstEdgeInsets.paddingSymetric(
+          verticalPad: 40,
+          horizontalPad: 20,
+        ),
+        child: Button(name: "Devam"),
+      ),
       body: Column(
         children: [
           CustomSizedBox.paddingHeight(heightValue: 6.0),
@@ -31,22 +37,7 @@ class AddPhotoView extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           CustomSizedBox.paddingHeight(heightValue: 32.0),
-          Container(
-            width: context.dynamicWidth(0.50),
-            height: context.dynamicHeight(0.23),
-            decoration: BoxDecoration(
-              color: AppColors.grey,
-              borderRadius: CustomRadius.radius28,
-              border: Border.all(width: 1, color: AppColors.lightGrey),
-            ),
-            child: Center(
-              child: Icon(
-                CupertinoIcons.plus,
-                color: AppColors.lightGrey,
-                size: 32,
-              ),
-            ),
-          ),
+          UploadPhotoCardWidget(),
         ],
       ),
     );
