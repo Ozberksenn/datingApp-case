@@ -18,9 +18,13 @@ class ProfieView extends StatelessWidget {
           children: [
             ProfileCard(),
             CustomSizedBox.paddingHeight(heightValue: 12.0),
-            Text(
-              "Beğendiğim Filmler",
-              style: Theme.of(context).textTheme.titleMedium,
+            InkWell(
+              // todo : test için remove ettim unutma kaldır.
+              // onTap: () => SharedPrefManager.remove("user"),
+              child: Text(
+                "Beğendiğim Filmler",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
             CustomSizedBox.paddingHeight(heightValue: 6.0),
             CustomExpanded(

@@ -1,9 +1,12 @@
 import 'package:datingapp/product/router/app_router.dart';
 import 'package:flutter/material.dart';
 
+import 'product/storage/storage_service.dart';
 import 'product/theme/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefManager.init();
   runApp(const MyApp());
 }
 

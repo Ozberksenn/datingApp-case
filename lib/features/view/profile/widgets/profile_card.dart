@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../../product/constants/app_fonts.dart';
+import '../../../../product/storage/storage_service.dart';
 import '../../../widgets/padding.dart';
 import '../../../widgets/radius.dart';
 
@@ -11,22 +12,23 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = SharedPrefManager.getUser();
+
     return ListTile(
       contentPadding: ConstEdgeInsets.padding0(),
-      leading: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: NetworkImage(
-              "https://live.staticflickr.com/1820/43259154864_6c2d3b0e94_z.jpg",
-            ),
-          ),
-        ),
-      ),
-      title: Text("Özberk Şen", style: Theme.of(context).textTheme.titleMedium),
-      subtitle: Text("ID:245677", style: AppFonts.greyText),
+      leading:
+          user!.photoUrl != null
+              ? Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: NetworkImage(user.photoUrl!)),
+                ),
+              )
+              : SizedBox(),
+      title: Text(user.name, style: Theme.of(context).textTheme.titleMedium),
+      subtitle: Text("ID: ${user.id}", style: AppFonts.greyText),
       trailing: addPhotoButton(context),
     );
   }

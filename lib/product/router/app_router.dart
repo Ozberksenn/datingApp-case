@@ -2,12 +2,24 @@ import 'package:datingapp/features/view/add_photo/add_photo_view.dart';
 import 'package:datingapp/features/view/home/home_view.dart';
 import 'package:datingapp/features/view/login/login_view.dart';
 import 'package:datingapp/features/view/register/register_view.dart';
+import 'package:datingapp/product/storage/storage_service.dart';
 import 'package:go_router/go_router.dart';
-
 import 'app_routes.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: AppRoutes.path(AppRoutes.login),
+  redirect: (context, state) {
+    final userJson = SharedPrefManager.getUser();
+    if (userJson == null) {
+      return "/login";
+    } else {
+      if (state.fullPath == "/login") {
+        return "/home";
+      } else {
+        return "${state.fullPath}";
+      }
+    }
+  },
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.path(AppRoutes.login),

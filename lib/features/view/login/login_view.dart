@@ -10,9 +10,41 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../product/editors/text_field_widget.dart';
 import '../../widgets/button.dart';
+import '../../widgets/snackbar_widgets.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void submit(BuildContext context) async {
+    if (_emailController.text == "" || _passwordController.text == "") {
+      errorSnackabr(context, "E-posta ya da şifre alanı boş olamaz");
+    }
+    context.read<LoginCubit>().login(
+      _emailController.text,
+      _passwordController.text,
+    );
+  }
+
+  void successLogin(LoginState state) {
+    successSnackbar(context, "Success Login");
+    context.go(AppRoutes.path(AppRoutes.home));
+    _emailController.text = "";
+    _passwordController.text = "";
+  }
+
+  void errorLogin(LoginState state) {
+    errorSnackabr(context, state.errorMessage ?? "Error");
+    _emailController.text = "";
+    _passwordController.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +72,14 @@ class LoginView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
-                TextFieldWidget(prefixIcon: Icons.email, labelText: "E-posta"),
+                TextFieldWidget(
+                  controller: _emailController,
+                  prefixIcon: Icons.email,
+                  labelText: "E-posta",
+                ),
                 CustomSizedBox.paddingHeight(heightValue: 14.0),
                 TextFieldWidget(
+                  controller: _passwordController,
                   prefixIcon: Icons.key,
                   suffixIcon: Icons.remove_red_eye,
                   labelText: "Şifre",
@@ -62,9 +99,7 @@ class LoginView extends StatelessWidget {
                   width: double.infinity,
                   child: Button(
                     name: "Giriş Yap",
-                    onTap: () => context.read<LoginCubit>().login("", ""),
-                    // onTap: () => ,
-                    // onTap: () => context.push(AppRoutes.path(AppRoutes.home)),
+                    onTap: () => submit(context),
                   ),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
@@ -96,7 +131,14 @@ class LoginView extends StatelessWidget {
             ),
           );
         },
-        listener: (context, read) {},
+        listener: (context, state) {
+          if (state.isSuccess == true) {
+            successLogin(state);
+          }
+          if (state.isSuccess == false) {
+            errorLogin(state);
+          }
+        },
       ),
     );
   }
