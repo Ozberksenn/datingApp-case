@@ -56,6 +56,16 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  Future<void> addFavourite(MovieModel movie, int index) async {
+    ApiResponseModel response = await AppService.instance.postData(
+      "/movie/favorite/${movie.id}",
+      {},
+    );
+    if (response.isSuccess == true) {
+      emit(state.copyWith());
+    } else {}
+  }
+
   String replaceImagePath(String path) {
     String imagePath = "";
     if (path.contains("https")) {

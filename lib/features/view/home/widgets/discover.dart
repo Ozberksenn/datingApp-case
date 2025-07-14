@@ -2,6 +2,7 @@ import 'package:datingapp/features/model/movie_model.dart';
 import 'package:datingapp/features/view-model/home/home_cubit.dart';
 import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../widgets/padding.dart';
@@ -28,7 +29,16 @@ class Discover extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Icon(CupertinoIcons.heart, color: AppColors.white),
+                  child: InkWell(
+                    onTap: () => state.addFavourite(movieList[index], index),
+                    child:
+                        movieList[index].isFavorite == false
+                            ? Icon(CupertinoIcons.heart, color: AppColors.white)
+                            : Icon(
+                              CupertinoIcons.heart_fill,
+                              color: AppColors.white,
+                            ),
+                  ),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
                 MovieInfoTile(movie: movieList[index]),
