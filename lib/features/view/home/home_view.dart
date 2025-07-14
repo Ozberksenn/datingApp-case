@@ -1,57 +1,30 @@
+import 'package:datingapp/features/view-model/home/home_cubit.dart';
 import 'package:datingapp/features/view/home/widgets/bottom_navigation_bar.dart';
-import 'package:datingapp/features/view/home/widgets/movie_info_tile.dart';
 import 'package:datingapp/features/view/profile/profile_view.dart';
-import 'package:datingapp/features/widgets/padding.dart';
-import 'package:datingapp/product/constants/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'widgets/discover.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: 1, children: [Discover(), ProfieView()]),
-      bottomNavigationBar: BottomNavigationBarWidget(),
-    );
-  }
-}
-
-class Discover extends StatelessWidget {
-  const Discover({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomExpanded(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                  "https://images.pexels.com/photos/11624930/pexels-photo-11624930.jpeg",
-                ),
-              ),
+    return BlocProvider(
+      create: (_) => HomeCubit(),
+      child: BlocConsumer<HomeCubit, int>(
+        builder: (context, state) {
+          final currentIndex = context.watch<HomeCubit>().state;
+          return Scaffold(
+            body: IndexedStack(
+              index: currentIndex,
+              children: [Discover(), ProfieView()],
             ),
-            child: Padding(
-              padding: ConstEdgeInsets.padding20(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(CupertinoIcons.heart, color: AppColors.white),
-                  ),
-                  CustomSizedBox.paddingHeight(heightValue: 24.0),
-                  MovieInfoTile(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
+            bottomNavigationBar: BottomNavigationBarWidget(),
+          );
+        },
+        listener: (context, state) {},
+      ),
     );
   }
 }
