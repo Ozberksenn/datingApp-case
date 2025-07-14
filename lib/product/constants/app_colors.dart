@@ -10,6 +10,3 @@ class AppColors {
   static const Color green = Colors.green;
   static const Color buttonColor = Color(0xFFe50815);
 }
-
-
-//#909090

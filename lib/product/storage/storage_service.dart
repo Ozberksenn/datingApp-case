@@ -16,11 +16,6 @@ class SharedPrefManager {
   static Future<bool> setString(String key, String value) =>
       _prefs.setString(key, value);
 
-  static bool getBool(String key) => _prefs.getBool(key) ?? false;
-
-  static Future<bool> setBool(String key, bool value) =>
-      _prefs.setBool(key, value);
-
   static Future<bool> remove(String key) => _prefs.remove(key);
 
   static UserModel? getUser() {

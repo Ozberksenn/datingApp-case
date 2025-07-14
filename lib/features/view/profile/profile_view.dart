@@ -1,5 +1,6 @@
 import 'package:datingapp/features/widgets/padding.dart';
 import 'package:flutter/material.dart';
+import '../../../product/storage/storage_service.dart';
 import 'widgets/movie_card.dart';
 import 'widgets/profile_app_bar.dart';
 import 'widgets/profile_card.dart';
@@ -20,7 +21,7 @@ class ProfieView extends StatelessWidget {
             CustomSizedBox.paddingHeight(heightValue: 12.0),
             InkWell(
               // todo : test için remove ettim unutma kaldır.
-              // onTap: () => SharedPrefManager.remove("user"),
+              onTap: () => SharedPrefManager.remove("user"),
               child: Text(
                 "Beğendiğim Filmler",
                 style: Theme.of(context).textTheme.titleMedium,

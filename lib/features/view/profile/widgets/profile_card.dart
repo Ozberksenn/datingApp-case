@@ -17,7 +17,7 @@ class ProfileCard extends StatelessWidget {
     return ListTile(
       contentPadding: ConstEdgeInsets.padding0(),
       leading:
-          user!.photoUrl != null
+          user!.photoUrl != null && user.photoUrl != ""
               ? Container(
                 width: 50,
                 height: 50,

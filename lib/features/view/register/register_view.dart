@@ -1,5 +1,6 @@
 import 'package:datingapp/features/view-model/register/register_cubit.dart';
 import 'package:datingapp/features/widgets/custom_view.dart';
+import 'package:datingapp/features/widgets/snackbar_widgets.dart';
 import 'package:datingapp/product/constants/app_colors.dart';
 import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,26 @@ class _RegisterViewState extends State<RegisterView> {
         _passwordController.text,
       );
     } else {
-      // todo : warning bas.
+      errorSnackabr(context, "şifreler uyum sağlamıyor.");
     }
+  }
+
+  void successRegister(RegisterState state) {
+    successSnackbar(context, "Kullanıcı Başarıyla Oluşturuldu");
+    context.go(AppRoutes.path(AppRoutes.login));
+    clearInputs();
+  }
+
+  void errorRegister(RegisterState state) {
+    errorSnackabr(context, state.errorMessage ?? "error");
+    clearInputs();
+  }
+
+  void clearInputs() {
+    _nameController.text = "";
+    _emailController.text = "";
+    _passwordController.text = "";
+    _passwordAgainController.text = "";
   }
 
   @override
@@ -135,9 +154,9 @@ class _RegisterViewState extends State<RegisterView> {
         },
         listener: (context, state) {
           if (state.isSuccess == true) {
-            context.go(AppRoutes.path(AppRoutes.login));
+            successRegister(state);
           } else {
-            print(state.errorMessage);
+            errorRegister(state);
           }
         },
       ),
