@@ -1,5 +1,6 @@
 import 'package:datingapp/features/model/movie_model.dart';
 import 'package:datingapp/features/view-model/home/home_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../product/services/app_service.dart';
 import '../../model/api_response_model.dart';
@@ -57,13 +58,32 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> addFavourite(MovieModel movie, int index) async {
-    ApiResponseModel response = await AppService.instance.postData(
-      "/movie/favorite/${movie.id}",
-      {},
+    final updatedMovie = movie.copyWith(
+      isFavorite: !(movie.isFavorite ?? false),
     );
-    if (response.isSuccess == true) {
-      emit(state.copyWith());
-    } else {}
+
+    final updatedMovies = List<MovieModel>.from(state.movies ?? []);
+    updatedMovies[index] = updatedMovie;
+
+    final updatedFavourites = List<MovieModel>.from(
+      state.favouriteMovies ?? [],
+    );
+    if (updatedMovie.isFavorite == true) {
+      updatedFavourites.add(updatedMovie);
+      ApiResponseModel response = await AppService.instance.postData(
+        "/movie/favorite/${movie.id}",
+        {},
+      );
+      if (response.isSuccess == true) {
+        debugPrint("Favorilere eklendi");
+      }
+    } else {
+      updatedFavourites.removeWhere((m) => m.id == updatedMovie.id);
+    }
+
+    emit(
+      state.copyWith(movies: updatedMovies, favouriteMovies: updatedFavourites),
+    );
   }
 
   String replaceImagePath(String path) {

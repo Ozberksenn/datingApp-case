@@ -14,7 +14,7 @@ class Discover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeCubit state = context.read<HomeCubit>();
+    final HomeCubit state = context.watch<HomeCubit>();
     return ListView.builder(
       shrinkWrap: true,
       itemCount: movieList.length,

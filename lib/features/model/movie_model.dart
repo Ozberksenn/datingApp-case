@@ -44,4 +44,26 @@ class MovieModel {
       'Images': images,
     };
   }
+
+  MovieModel copyWith({
+    String? id,
+    String? title,
+    String? director,
+    String? year,
+    String? poster,
+    bool? isFavorite,
+    String? plot,
+    List<String>? images,
+  }) {
+    return MovieModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      director: director ?? this.director,
+      year: year ?? this.year,
+      poster: poster ?? this.poster,
+      isFavorite: isFavorite ?? this.isFavorite,
+      plot: plot ?? this.plot,
+      images: images ?? this.images,
+    );
+  }
 }
