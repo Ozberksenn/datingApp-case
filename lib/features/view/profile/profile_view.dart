@@ -1,7 +1,6 @@
 import 'package:datingapp/features/widgets/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../product/storage/storage_service.dart';
 import '../../view-model/home/home_cubit.dart';
 import 'widgets/movie_card.dart';
 import 'widgets/profile_app_bar.dart';
@@ -14,7 +13,7 @@ class ProfieView extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeState = context.watch<HomeCubit>().state;
     return Scaffold(
-      appBar: profileAppBar(context),
+      appBar: profileAppBar(context, isExit: true),
       body: Padding(
         padding: ConstEdgeInsets.padding4(),
         child: Column(
@@ -22,13 +21,9 @@ class ProfieView extends StatelessWidget {
           children: [
             ProfileCard(),
             CustomSizedBox.paddingHeight(heightValue: 12.0),
-            InkWell(
-              // todo : test için remove ettim unutma kaldır.
-              onTap: () => SharedPrefManager.remove("user"),
-              child: Text(
-                "Beğendiğim Filmler",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
+            Text(
+              "Beğendiğim Filmler",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             CustomSizedBox.paddingHeight(heightValue: 6.0),
             homeState.isFavoriteLoading == false

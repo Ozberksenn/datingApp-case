@@ -1,14 +1,20 @@
+import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../product/constants/app_colors.dart';
+import '../../../../product/storage/storage_service.dart';
 import '../../../widgets/padding.dart';
 import '../../../widgets/radius.dart';
 import 'limited_offer_bottom_sheet.dart';
 
-AppBar profileAppBar(BuildContext context, {bool limitedOffer = true}) {
+AppBar profileAppBar(
+  BuildContext context, {
+  bool limitedOffer = true,
+  bool? isExit,
+}) {
   return AppBar(
     backgroundColor: AppColors.black,
-    leading: BackIcon(),
+    leading: BackIcon(isExit: isExit),
     title: Text("Profil Detayı", style: Theme.of(context).textTheme.bodyMedium),
     actions: [limitedOffer == true ? LimitedOffer() : SizedBox()],
   );
@@ -46,12 +52,24 @@ class LimitedOffer extends StatelessWidget {
 }
 
 class BackIcon extends StatelessWidget {
-  const BackIcon({super.key});
+  final bool? isExit;
+  const BackIcon({super.key, this.isExit});
 
   @override
   Widget build(BuildContext context) {
+    void exitApp() async {
+      await SharedPrefManager.remove("user");
+      context.go(AppRoutes.path(AppRoutes.login));
+    }
+
     return InkWell(
-      onTap: () => context.pop(),
+      onTap: () async {
+        if (isExit == true) {
+          exitApp();
+        } else {
+          context.pop();
+        }
+      },
       child: Container(
         margin: ConstEdgeInsets.padding6(),
         decoration: BoxDecoration(

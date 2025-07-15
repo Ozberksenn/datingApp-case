@@ -141,13 +141,6 @@ BoxDecoration conditionImage(HomeCubit state, MovieModel movie) {
     return BoxDecoration(
       image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(imagePath)),
     );
-  } else if (movie.images != [] && movie.images != null) {
-    return BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: NetworkImage(movie.images![0]),
-      ),
-    );
   } else {
     return BoxDecoration(
       image: DecorationImage(
