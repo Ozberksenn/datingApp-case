@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:datingapp/features/widgets/radius.dart';
 import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,7 +29,7 @@ class DiscoverCard extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(decoration: conditionImage(cubit, movieList[index])),
+          discoverImage(cubit, movieList[index]),
           UnderBlackGradient(),
           MovieCaption(cubit: cubit, movieList: movieList, index: index),
         ],
@@ -58,7 +59,7 @@ class MovieCaption extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerRight,
-            child: DiscoverCardHearth(
+            child: DiscoverCardHeart(
               cubit: cubit,
               movieList: movieList,
               index: index,
@@ -95,8 +96,8 @@ class UnderBlackGradient extends StatelessWidget {
   }
 }
 
-class DiscoverCardHearth extends StatelessWidget {
-  const DiscoverCardHearth({
+class DiscoverCardHeart extends StatelessWidget {
+  const DiscoverCardHeart({
     super.key,
     required this.cubit,
     required this.movieList,
@@ -112,8 +113,9 @@ class DiscoverCardHearth extends StatelessWidget {
     return InkWell(
       onTap: () => cubit.addFavourite(movieList[index], index),
       child: ClipRRect(
+        borderRadius: CustomRadius.radius28,
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Container(
             padding: ConstEdgeInsets.paddingSymetric(
               horizontalPad: 12.0,
@@ -135,17 +137,26 @@ class DiscoverCardHearth extends StatelessWidget {
   }
 }
 
-BoxDecoration conditionImage(HomeCubit state, MovieModel movie) {
-  final imagePath = state.replaceImagePath(movie.poster!);
+Widget discoverImage(HomeCubit cubit, MovieModel movie) {
+  final imagePath = cubit.replaceImagePath(movie.poster!);
   if (movie.poster != null && movie.poster != "") {
-    return BoxDecoration(
-      image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(imagePath)),
+    return CachedNetworkImage(
+      imageUrl: imagePath,
+      imageBuilder:
+          (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
+          ),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   } else {
-    return BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage("assets/logo/SinFlixLogo.png"),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage("assets/logo/SinFlixLogo.png"),
+        ),
       ),
     );
   }

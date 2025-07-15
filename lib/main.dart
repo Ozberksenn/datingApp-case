@@ -24,5 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// todo discover da ki imageler CachedNetwork olsun ve cached network custom bir widget olsun.
