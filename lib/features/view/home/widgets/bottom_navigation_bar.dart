@@ -4,6 +4,7 @@ import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../widgets/padding.dart';
 
@@ -26,8 +27,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             title: "Anasayfa",
             icon:
                 homeCubit.state.currentIndex == 0
-                    ? Icons.home_filled
-                    : Icons.home_outlined,
+                    ? FontAwesomeIcons.house
+                    : CupertinoIcons.house,
             onTap: () => context.read<HomeCubit>().changeTab(0),
             fontStyle:
                 homeCubit.state.currentIndex == 0
@@ -39,8 +40,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             title: "Profil",
             icon:
                 homeCubit.state.currentIndex == 1
-                    ? Icons.person
-                    : CupertinoIcons.person,
+                    ? FontAwesomeIcons.userLarge
+                    : FontAwesomeIcons.user,
             onTap: () => context.read<HomeCubit>().changeTab(1),
             fontStyle:
                 homeCubit.state.currentIndex == 1
