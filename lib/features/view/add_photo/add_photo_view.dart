@@ -1,8 +1,11 @@
 import 'package:datingapp/features/view-model/add_photo/add_photo_cubit.dart';
 import 'package:datingapp/features/view/profile/widgets/profile_app_bar.dart';
 import 'package:datingapp/features/widgets/button.dart';
+import 'package:datingapp/features/widgets/loading.dart';
+import 'package:datingapp/features/widgets/snackbar_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../view-model/add_photo/add_photo_state.dart';
 import '../../widgets/padding.dart';
 import 'widgets/upload_photo_card.dart';
@@ -19,10 +22,15 @@ class AddPhotoView extends StatelessWidget {
           if (state.isLoading == false) {
             return AddPhotoContent();
           } else {
-            return Center(child: Text("data"));
+            return LoadingWidget();
           }
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.isSuccess == true) {
+            successSnackbar(context, "Görsel Başarıyla Yüklendi.");
+            context.pop();
+          }
+        },
       ),
     );
   }

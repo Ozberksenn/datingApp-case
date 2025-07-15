@@ -23,6 +23,7 @@ class LimitedOffer extends StatelessWidget {
         color: AppColors.buttonColor,
         borderRadius: CustomRadius.radius28,
       ),
+      margin: ConstEdgeInsets.padding6(),
       padding: ConstEdgeInsets.padding8(),
       child: Row(
         children: [

@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
               index: homeState.currentIndex,
               children: [
                 Discover(movieList: homeState.movies ?? []),
-                ProfieView(homeState: homeState),
+                ProfieView(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBarWidget(),

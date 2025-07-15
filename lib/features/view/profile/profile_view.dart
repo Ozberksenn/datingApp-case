@@ -1,17 +1,18 @@
-import 'package:datingapp/features/view-model/home/home_state.dart';
 import 'package:datingapp/features/widgets/padding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../product/storage/storage_service.dart';
+import '../../view-model/home/home_cubit.dart';
 import 'widgets/movie_card.dart';
 import 'widgets/profile_app_bar.dart';
 import 'widgets/profile_card.dart';
 
 class ProfieView extends StatelessWidget {
-  final HomeState homeState;
-  const ProfieView({super.key, required this.homeState});
+  const ProfieView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final homeState = context.watch<HomeCubit>().state;
     return Scaffold(
       appBar: profileAppBar(context),
       body: Padding(
@@ -30,24 +31,26 @@ class ProfieView extends StatelessWidget {
               ),
             ),
             CustomSizedBox.paddingHeight(heightValue: 6.0),
-            CustomExpanded(
-              child: GridView.builder(
-                itemCount: homeState.favouriteMovies?.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  mainAxisExtent: 245,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) {
-                  return homeState.favouriteMovies?[index] != null
-                      ? MovieCard(
-                        favoriteMovie: homeState.favouriteMovies![index],
-                      )
-                      : SizedBox();
-                },
-              ),
-            ),
+            homeState.isFavoriteLoading == false
+                ? CustomExpanded(
+                  child: GridView.builder(
+                    itemCount: homeState.favouriteMovies?.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      mainAxisExtent: 245,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      return homeState.favouriteMovies?[index] != null
+                          ? MovieCard(
+                            favoriteMovie: homeState.favouriteMovies![index],
+                          )
+                          : SizedBox();
+                    },
+                  ),
+                )
+                : SizedBox(),
           ],
         ),
       ),
