@@ -23,3 +23,26 @@ class Button extends StatelessWidget {
     );
   }
 }
+
+class ButtonLoading extends StatelessWidget {
+  const ButtonLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: ConstEdgeInsets.padding16(),
+      decoration: BoxDecoration(
+        color: AppColors.grey.withValues(alpha: 0.8),
+        borderRadius: CustomRadius.radius18,
+      ),
+      child: Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: 24,
+          height: 24,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
+      ),
+    );
+  }
+}

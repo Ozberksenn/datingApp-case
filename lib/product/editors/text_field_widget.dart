@@ -5,6 +5,7 @@ class TextFieldWidget extends StatelessWidget {
   final String? labelText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
+  final bool? obscure;
   final TextEditingController? controller;
   const TextFieldWidget({
     super.key,
@@ -12,12 +13,14 @@ class TextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.controller,
+    this.obscure,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      obscureText: obscure ?? false,
       decoration: InputDecoration(
         hintText: labelText,
         prefixIcon:

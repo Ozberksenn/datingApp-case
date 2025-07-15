@@ -82,6 +82,7 @@ class _LoginViewState extends State<LoginView> {
                   controller: _passwordController,
                   prefixIcon: Icons.key,
                   suffixIcon: Icons.remove_red_eye,
+                  obscure: true,
                   labelText: "Şifre",
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
@@ -97,10 +98,13 @@ class _LoginViewState extends State<LoginView> {
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
                 SizedBox(
                   width: double.infinity,
-                  child: Button(
-                    name: "Giriş Yap",
-                    onTap: () => submit(context),
-                  ),
+                  child:
+                      state.isLoading == false
+                          ? Button(
+                            name: "Giriş Yap",
+                            onTap: () => submit(context),
+                          )
+                          : ButtonLoading(),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
                 SocialMediaWidget(),

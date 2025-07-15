@@ -1,13 +1,9 @@
 class LoginState {
   final bool isLoading;
   final String? errorMessage;
-  final bool isSuccess;
+  final bool? isSuccess;
 
-  LoginState({
-    this.isLoading = false,
-    this.errorMessage,
-    this.isSuccess = false,
-  });
+  LoginState({this.isLoading = false, this.errorMessage, this.isSuccess});
 
   LoginState copyWith({
     bool? isLoading,
@@ -16,7 +12,7 @@ class LoginState {
   }) {
     return LoginState(
       isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage,
+      errorMessage: errorMessage ?? this.errorMessage,
       isSuccess: isSuccess ?? this.isSuccess,
     );
   }
