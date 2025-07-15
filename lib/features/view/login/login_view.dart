@@ -5,6 +5,7 @@ import 'package:datingapp/features/widgets/padding.dart';
 import 'package:datingapp/features/widgets/social_media.dart';
 import 'package:datingapp/product/constants/app_fonts.dart';
 import 'package:datingapp/product/router/app_routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -81,8 +82,13 @@ class _LoginViewState extends State<LoginView> {
                 TextFieldWidget(
                   controller: _passwordController,
                   prefixIcon: Icons.key,
-                  suffixIcon: Icons.remove_red_eye,
-                  obscure: true,
+                  suffixIcon:
+                      state.isObscuere == false
+                          ? CupertinoIcons.eye
+                          : CupertinoIcons.eye_slash_fill,
+                  obscure: state.isObscuere,
+                  onTapSuffix:
+                      () => context.read<LoginCubit>().changeObscureState(),
                   labelText: "Şifre",
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),

@@ -6,6 +6,7 @@ class TextFieldWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final bool? obscure;
+  final void Function()? onTapSuffix;
   final TextEditingController? controller;
   const TextFieldWidget({
     super.key,
@@ -14,6 +15,7 @@ class TextFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.controller,
     this.obscure,
+    this.onTapSuffix,
   });
 
   @override
@@ -25,11 +27,14 @@ class TextFieldWidget extends StatelessWidget {
         hintText: labelText,
         prefixIcon:
             prefixIcon != null
-                ? Icon(prefixIcon, color: AppColors.white, size: 22)
+                ? Icon(prefixIcon, color: AppColors.lightGrey, size: 22)
                 : null,
         suffixIcon:
             suffixIcon != null
-                ? Icon(suffixIcon, color: AppColors.lightGrey, size: 22)
+                ? IconButton(
+                  onPressed: onTapSuffix,
+                  icon: Icon(suffixIcon, color: AppColors.lightGrey, size: 22),
+                )
                 : null,
       ),
     );

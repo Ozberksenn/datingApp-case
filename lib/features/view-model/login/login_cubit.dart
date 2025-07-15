@@ -9,6 +9,10 @@ import '../../model/user_model.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginState());
 
+  void changeObscureState() {
+    emit(state.copyWith(isObscuere: !state.isObscuere));
+  }
+
   Future<void> login(String email, String password) async {
     emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: null));
     ApiResponseModel response = await AppService.instance.postData(
