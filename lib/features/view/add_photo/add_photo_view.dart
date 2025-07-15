@@ -1,6 +1,8 @@
+import 'package:datingapp/features/view-model/add_photo/add_photo_cubit.dart';
 import 'package:datingapp/features/view/profile/widgets/profile_app_bar.dart';
 import 'package:datingapp/features/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/padding.dart';
 import 'widgets/upload_photo_card.dart';
 
@@ -17,7 +19,10 @@ class AddPhotoView extends StatelessWidget {
           verticalPad: 40,
           horizontalPad: 20,
         ),
-        child: Button(name: "Devam"),
+        child: Button(
+          name: "Devam",
+          onTap: () => context.read<AddPhotoCubit>().uploadPhoto(),
+        ),
       ),
       body: Column(
         children: [

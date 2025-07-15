@@ -1,27 +1,30 @@
+import 'dart:typed_data';
+import 'package:dio/dio.dart';
+
 class AddPhotoState {
   final bool isLoading;
-  final String? errorMessage;
   final bool isSuccess;
-  final String? photourl;
+  FormData? photo;
+  Uint8List? bytesImage;
 
   AddPhotoState({
     this.isLoading = false,
-    this.errorMessage,
     this.isSuccess = false,
-    this.photourl,
+    this.photo,
+    this.bytesImage,
   });
 
   AddPhotoState copyWith({
     bool? isLoading,
-    String? errorMessage,
     bool? isSuccess,
-    String? photourl,
+    FormData? photo,
+    Uint8List? bytesImage,
   }) {
     return AddPhotoState(
       isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage,
       isSuccess: isSuccess ?? this.isSuccess,
-      photourl: photourl,
+      photo: photo ?? this.photo,
+      bytesImage: bytesImage,
     );
   }
 }

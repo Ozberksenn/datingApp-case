@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../widgets/padding.dart';
 import '../../../widgets/radius.dart';
@@ -39,14 +40,17 @@ class BackIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: ConstEdgeInsets.padding6(),
-      decoration: BoxDecoration(
-        color: AppColors.grey,
-        shape: BoxShape.circle,
-        border: Border.all(width: 1, color: AppColors.lightGrey),
+    return InkWell(
+      onTap: () => context.pop(),
+      child: Container(
+        margin: ConstEdgeInsets.padding6(),
+        decoration: BoxDecoration(
+          color: AppColors.grey,
+          shape: BoxShape.circle,
+          border: Border.all(width: 1, color: AppColors.lightGrey),
+        ),
+        child: Icon(Icons.arrow_back, color: AppColors.white, size: 20),
       ),
-      child: Icon(Icons.arrow_back, color: AppColors.white, size: 20),
     );
   }
 }
