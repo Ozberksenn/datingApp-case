@@ -257,12 +257,12 @@ Widget getBonusCard(BuildContext context) {
                 bonusIcon(
                   context,
                   text: "Daha Fazla Eşleşme",
-                  icon: "assets/images/limited-offer/heart.png",
+                  icon: "assets/images/limited-offer/double-heart.png",
                 ),
                 bonusIcon(
                   context,
                   text: "Öne Çıkarma",
-                  icon: "assets/images/limited-offer/heart.png",
+                  icon: "assets/images/limited-offer/arrow.png",
                 ),
                 bonusIcon(
                   context,
