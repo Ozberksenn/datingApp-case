@@ -31,7 +31,7 @@ Future<dynamic> limitedOfferBottomSheet(BuildContext context) {
               ],
             ),
           ),
-          height: context.dynamicHeight(0.7),
+          height: context.dynamicHeight(0.75),
           child: Column(
             children: [
               CustomSizedBox.paddingHeight(heightValue: 8.0),
@@ -122,6 +122,13 @@ Widget packageCard(
             ],
           ),
           color: AppColors.darkRed,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white.withValues(alpha: 0.6),
+              blurRadius: 1,
+              spreadRadius: 1,
+            ),
+          ],
           border: Border.all(width: 1, color: AppColors.lightGrey),
           borderRadius: CustomRadius.radius18,
         ),
@@ -184,6 +191,13 @@ Widget packageCard(
             borderRadius: CustomRadius.radius20,
             border: Border.all(width: 1, color: AppColors.lightGrey),
             color: gradientColor ?? AppColors.darkRed,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.white.withValues(alpha: 0.6),
+                blurRadius: 1,
+                spreadRadius: 1,
+              ),
+            ],
           ),
           width: 50,
           height: 20,
@@ -213,10 +227,17 @@ Widget getBonusCard(BuildContext context) {
             shape: BoxShape.circle,
             border: Border.all(width: 1, color: AppColors.lightGrey),
             color: AppColors.darkRed,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.white.withValues(alpha: 0.6),
+                blurRadius: 1,
+                spreadRadius: 1,
+              ),
+            ],
           ),
           child: Center(child: icon != null ? Image.asset(icon) : null),
         ),
-        CustomSizedBox.paddingHeight(heightValue: 12.0),
+        CustomSizedBox.paddingHeight(heightValue: 10.0),
         SizedBox(
           width: 80,
           child: Text(
@@ -231,23 +252,26 @@ Widget getBonusCard(BuildContext context) {
 
   return ClipRRect(
     child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
       child: Container(
         padding: ConstEdgeInsets.padding8(),
         width: context.dynamicWidth(1),
         decoration: BoxDecoration(
           borderRadius: CustomRadius.radius28,
           border: Border.all(width: 1, color: AppColors.lightGrey),
-          color: AppColors.white.withValues(alpha: 0.2),
+          color: AppColors.lightGrey.withValues(alpha: 0.1),
         ),
         child: Column(
           children: [
+            CustomSizedBox.paddingHeight(heightValue: 12.0),
             Text(
               "Alacağınız Bonuslar",
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            CustomSizedBox.paddingHeight(heightValue: 12.0),
+            CustomSizedBox.paddingHeight(heightValue: 22.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 bonusIcon(
                   context,
@@ -271,6 +295,7 @@ Widget getBonusCard(BuildContext context) {
                 ),
               ],
             ),
+            CustomSizedBox.paddingHeight(heightValue: 12.0),
           ],
         ),
       ),
