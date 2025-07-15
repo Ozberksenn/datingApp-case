@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../widgets/padding.dart';
 import '../../../widgets/radius.dart';
+import 'limited_offer_bottom_sheet.dart';
 
 AppBar profileAppBar(BuildContext context, {bool limitedOffer = true}) {
   return AppBar(
@@ -18,19 +19,27 @@ class LimitedOffer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.buttonColor,
-        borderRadius: CustomRadius.radius28,
-      ),
-      margin: ConstEdgeInsets.padding6(),
-      padding: ConstEdgeInsets.padding8(),
-      child: Row(
-        children: [
-          Icon(Icons.diamond, color: AppColors.white),
-          CustomSizedBox.paddingWidth(widthValue: 4.0),
-          Text("Sınırlı Teklif", style: Theme.of(context).textTheme.labelSmall),
-        ],
+    return InkWell(
+      onTap: () {
+        limitedOfferBottomSheet(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.buttonColor,
+          borderRadius: CustomRadius.radius28,
+        ),
+        margin: ConstEdgeInsets.padding6(),
+        padding: ConstEdgeInsets.padding8(),
+        child: Row(
+          children: [
+            Icon(Icons.diamond, color: AppColors.white),
+            CustomSizedBox.paddingWidth(widthValue: 4.0),
+            Text(
+              "Sınırlı Teklif",
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ],
+        ),
       ),
     );
   }

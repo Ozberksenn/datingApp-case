@@ -24,3 +24,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// todo discover da ki imageler CachedNetwork olsun ve cached network custom bir widget olsun.
+// todo custom bottom sheet yap. Sınırlı teklif onun içine koy.
+// todo : splash ekranı 
+// todo : sınırlı teklif b.sheet 
+
+

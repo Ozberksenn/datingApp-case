@@ -24,10 +24,7 @@ class _HomeViewState extends State<HomeView> {
           return Scaffold(
             body: IndexedStack(
               index: homeState.currentIndex,
-              children: [
-                Discover(movieList: homeState.movies ?? []),
-                ProfieView(),
-              ],
+              children: [Discover(), ProfieView()],
             ),
             bottomNavigationBar: BottomNavigationBarWidget(),
           );
