@@ -8,6 +8,7 @@ import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../product/editors/text_field_widget.dart';
 import '../../widgets/button.dart';
@@ -75,13 +76,13 @@ class _LoginViewState extends State<LoginView> {
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
                 TextFieldWidget(
                   controller: _emailController,
-                  prefixIcon: Icons.email,
+                  prefixIcon: FontAwesomeIcons.envelope,
                   labelText: "E-posta",
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 14.0),
                 TextFieldWidget(
                   controller: _passwordController,
-                  prefixIcon: Icons.key,
+                  prefixIcon: FontAwesomeIcons.unlockKeyhole,
                   suffixIcon:
                       state.isObscuere == false
                           ? CupertinoIcons.eye

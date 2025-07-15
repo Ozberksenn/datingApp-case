@@ -11,6 +11,7 @@ class AppTheme {
 ThemeData dark = ThemeData(
   useMaterial3: false,
   scaffoldBackgroundColor: Colors.black,
+  fontFamily: 'Euclid',
   progressIndicatorTheme: ProgressIndicatorThemeData(
     color: AppColors.buttonColor,
   ),
@@ -24,7 +25,11 @@ ThemeData dark = ThemeData(
       borderSide: BorderSide(color: AppColors.white, width: 1),
     ),
     suffixIconColor: AppColors.white,
-    hintStyle: TextStyle(fontSize: 14, color: AppColors.lightGrey),
+    hintStyle: TextStyle(
+      fontSize: 14,
+      color: AppColors.lightGrey,
+      fontWeight: FontWeight.w300,
+    ),
   ),
   textTheme: const TextTheme(
     bodyLarge: TextStyle(

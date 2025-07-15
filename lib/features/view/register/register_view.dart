@@ -5,6 +5,7 @@ import 'package:datingapp/product/constants/app_colors.dart';
 import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../product/constants/app_fonts.dart';
 import '../../../product/editors/text_field_widget.dart';
@@ -83,19 +84,19 @@ class _RegisterViewState extends State<RegisterView> {
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
                 TextFieldWidget(
                   controller: _nameController,
-                  prefixIcon: Icons.email,
+                  prefixIcon: FontAwesomeIcons.envelope,
                   labelText: "Ad Soyad",
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 10.0),
                 TextFieldWidget(
                   controller: _emailController,
-                  prefixIcon: Icons.email,
+                  prefixIcon: FontAwesomeIcons.envelope,
                   labelText: "E-posta",
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 10.0),
                 TextFieldWidget(
                   controller: _passwordController,
-                  prefixIcon: Icons.key,
+                  prefixIcon: FontAwesomeIcons.unlockKeyhole,
                   suffixIcon: Icons.remove_red_eye,
                   labelText: "Şifre",
                   obscure: true,
@@ -103,7 +104,7 @@ class _RegisterViewState extends State<RegisterView> {
                 CustomSizedBox.paddingHeight(heightValue: 10.0),
                 TextFieldWidget(
                   controller: _passwordAgainController,
-                  prefixIcon: Icons.key,
+                  prefixIcon: FontAwesomeIcons.unlockKeyhole,
                   labelText: "Şifre Tekrar",
                   obscure: true,
                 ),
