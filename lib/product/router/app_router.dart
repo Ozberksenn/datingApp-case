@@ -11,7 +11,7 @@ final GoRouter router = GoRouter(
   initialLocation: AppRoutes.path(AppRoutes.splash),
   redirect: (context, state) {
     final userJson = SharedPrefManager.getUser();
-    if (state.fullPath == "/splash") {
+    if (state.fullPath == "/splash" || state.fullPath == "/register") {
       return null;
     }
     if (userJson == null) {

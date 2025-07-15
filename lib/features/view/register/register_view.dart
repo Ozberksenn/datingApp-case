@@ -98,12 +98,14 @@ class _RegisterViewState extends State<RegisterView> {
                   prefixIcon: Icons.key,
                   suffixIcon: Icons.remove_red_eye,
                   labelText: "Şifre",
+                  obscure: true,
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 10.0),
                 TextFieldWidget(
                   controller: _passwordAgainController,
                   prefixIcon: Icons.key,
                   labelText: "Şifre Tekrar",
+                  obscure: true,
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 12.0),
                 RichText(
@@ -128,24 +130,33 @@ class _RegisterViewState extends State<RegisterView> {
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
                 SizedBox(
                   width: double.infinity,
-                  child: Button(
-                    name: "Şimdi Kaydol",
-                    onTap: () => register(context),
-                  ),
+                  child:
+                      state.isLoading == false
+                          ? Button(
+                            name: "Şimdi Kaydol",
+                            onTap: () => register(context),
+                          )
+                          : ButtonLoading(),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
                 SocialMediaWidget(),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
-                RichText(
-                  text: TextSpan(
-                    text: 'Zaten Bir Hesabın Var mı?  ',
-                    style: TextStyle(color: AppColors.lightGrey, fontSize: 14),
-                    children: [
-                      TextSpan(
-                        text: 'Giriş Yap',
-                        style: Theme.of(context).textTheme.titleSmall,
+                InkWell(
+                  onTap: () => context.push(AppRoutes.path(AppRoutes.login)),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Zaten Bir Hesabın Var mı?  ',
+                      style: TextStyle(
+                        color: AppColors.lightGrey,
+                        fontSize: 14,
                       ),
-                    ],
+                      children: [
+                        TextSpan(
+                          text: 'Giriş Yap',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -155,7 +166,8 @@ class _RegisterViewState extends State<RegisterView> {
         listener: (context, state) {
           if (state.isSuccess == true) {
             successRegister(state);
-          } else {
+          }
+          if (state.isSuccess == false) {
             errorRegister(state);
           }
         },

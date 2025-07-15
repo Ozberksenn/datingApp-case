@@ -1,13 +1,9 @@
 class RegisterState {
   final bool isLoading;
   final String? errorMessage;
-  final bool isSuccess;
+  final bool? isSuccess;
 
-  RegisterState({
-    this.isLoading = false,
-    this.errorMessage,
-    this.isSuccess = false,
-  });
+  RegisterState({this.isLoading = false, this.errorMessage, this.isSuccess});
 
   RegisterState copyWith({
     bool? isLoading,
