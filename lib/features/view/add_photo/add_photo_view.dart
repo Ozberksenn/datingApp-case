@@ -3,11 +3,33 @@ import 'package:datingapp/features/view/profile/widgets/profile_app_bar.dart';
 import 'package:datingapp/features/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../view-model/add_photo/add_photo_state.dart';
 import '../../widgets/padding.dart';
 import 'widgets/upload_photo_card.dart';
 
 class AddPhotoView extends StatelessWidget {
   const AddPhotoView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AddPhotoCubit(),
+      child: BlocConsumer<AddPhotoCubit, AddPhotoState>(
+        builder: (context, state) {
+          if (state.isLoading == false) {
+            return AddPhotoContent();
+          } else {
+            return Center(child: Text("data"));
+          }
+        },
+        listener: (context, state) {},
+      ),
+    );
+  }
+}
+
+class AddPhotoContent extends StatelessWidget {
+  const AddPhotoContent({super.key});
 
   @override
   Widget build(BuildContext context) {

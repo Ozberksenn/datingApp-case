@@ -14,7 +14,8 @@ class HomeCubit extends Cubit<HomeState> {
     : super(
         HomeState(
           currentIndex: 0,
-          isLoading: false,
+          isMovieLoading: true,
+          isFavoriteLoading: true,
           movies: [],
           errorMessage: null,
         ),
@@ -41,7 +42,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getMovies() async {
-    emit(state.copyWith(isLoading: true));
     ApiResponseModel response = await AppService.instance.getData(
       "/movie/list?page=1",
     );
@@ -51,10 +51,10 @@ class HomeCubit extends Cubit<HomeState> {
             (response.data['data']['movies'] as List)
                 .map((e) => MovieModel.fromJson(e))
                 .toList();
-        emit(state.copyWith(isLoading: false, movies: movies));
+        emit(state.copyWith(isMovieLoading: false, movies: movies));
       }
     } else {
-      emit(state.copyWith(isLoading: false, movies: []));
+      emit(state.copyWith(isMovieLoading: false, movies: []));
     }
   }
 
@@ -68,10 +68,15 @@ class HomeCubit extends Cubit<HomeState> {
             (response.data['data'] as List)
                 .map((e) => MovieModel.fromJson(e))
                 .toList();
-        emit(state.copyWith(isLoading: true, favouriteMovies: favoriteMovies));
+        emit(
+          state.copyWith(
+            isFavoriteLoading: false,
+            favouriteMovies: favoriteMovies,
+          ),
+        );
       }
     } else {
-      emit(state.copyWith(isLoading: false, favouriteMovies: []));
+      emit(state.copyWith(isFavoriteLoading: false, favouriteMovies: []));
     }
   }
 

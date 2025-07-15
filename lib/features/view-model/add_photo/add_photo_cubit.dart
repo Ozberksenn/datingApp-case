@@ -25,6 +25,7 @@ class AddPhotoCubit extends Cubit<AddPhotoState> {
   }
 
   Future<void> uploadPhoto() async {
+    emit(state.copyWith(isLoading: true));
     if (state.photo == null) {
       return;
     }

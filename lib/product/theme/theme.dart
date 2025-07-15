@@ -9,8 +9,11 @@ class AppTheme {
 }
 
 ThemeData dark = ThemeData(
-  useMaterial3: true,
+  useMaterial3: false,
   scaffoldBackgroundColor: Colors.black,
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: AppColors.buttonColor,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
     filled: true,

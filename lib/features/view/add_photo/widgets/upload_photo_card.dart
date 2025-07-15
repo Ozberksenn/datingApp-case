@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../product/constants/app_colors.dart';
 import '../../../../product/storage/storage_service.dart';
-import '../../../view-model/add_photo/add_photo_state.dart';
 import '../../../widgets/radius.dart';
 
 class UploadPhotoCardWidget extends StatelessWidget {
@@ -13,15 +12,7 @@ class UploadPhotoCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AddPhotoCubit(),
-      child: BlocConsumer<AddPhotoCubit, AddPhotoState>(
-        builder: (context, state) {
-          return UploadPhotoCard();
-        },
-        listener: (context, state) {},
-      ),
-    );
+    return UploadPhotoCard();
   }
 }
 

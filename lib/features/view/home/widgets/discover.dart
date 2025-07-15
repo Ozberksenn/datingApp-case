@@ -1,5 +1,6 @@
 import 'package:datingapp/features/model/movie_model.dart';
 import 'package:datingapp/features/view-model/home/home_cubit.dart';
+import 'package:datingapp/features/widgets/loading.dart';
 import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,40 +15,46 @@ class Discover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeCubit state = context.watch<HomeCubit>();
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: movieList.length,
-      itemBuilder: (context, index) {
-        return Container(
-          height: context.dynamicHeight(0.8),
-          decoration: conditionImage(state, movieList[index]),
-          child: Padding(
-            padding: ConstEdgeInsets.padding20(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () => state.addFavourite(movieList[index], index),
-                    child:
-                        movieList[index].isFavorite == false
-                            ? Icon(CupertinoIcons.heart, color: AppColors.white)
-                            : Icon(
-                              CupertinoIcons.heart_fill,
-                              color: AppColors.white,
-                            ),
-                  ),
+    final HomeCubit cubit = context.watch<HomeCubit>();
+    return cubit.state.isMovieLoading == false
+        ? ListView.builder(
+          shrinkWrap: true,
+          itemCount: movieList.length,
+          itemBuilder: (context, index) {
+            return Container(
+              height: context.dynamicHeight(0.8),
+              decoration: conditionImage(cubit, movieList[index]),
+              child: Padding(
+                padding: ConstEdgeInsets.padding20(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap:
+                            () => cubit.addFavourite(movieList[index], index),
+                        child:
+                            movieList[index].isFavorite == false
+                                ? Icon(
+                                  CupertinoIcons.heart,
+                                  color: AppColors.white,
+                                )
+                                : Icon(
+                                  CupertinoIcons.heart_fill,
+                                  color: AppColors.white,
+                                ),
+                      ),
+                    ),
+                    CustomSizedBox.paddingHeight(heightValue: 24.0),
+                    MovieInfoTile(movie: movieList[index]),
+                  ],
                 ),
-                CustomSizedBox.paddingHeight(heightValue: 24.0),
-                MovieInfoTile(movie: movieList[index]),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+              ),
+            );
+          },
+        )
+        : LoadingWidget();
   }
 }
 
