@@ -117,7 +117,7 @@ class _RegisterViewState extends State<RegisterView> {
                       TextSpan(
                         text: 'okudum ve kabul ediyorum.',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.white,
                           decoration: TextDecoration.underline,
                         ),
                       ),
