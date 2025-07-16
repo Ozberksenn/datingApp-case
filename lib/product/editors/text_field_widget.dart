@@ -27,7 +27,7 @@ class TextFieldWidget extends StatelessWidget {
         hintText: labelText,
         prefixIcon:
             prefixIcon != null
-                ? Icon(prefixIcon, color: AppColors.lightGrey, size: 22)
+                ? Icon(prefixIcon, color: AppColors.white, size: 22)
                 : null,
         suffixIcon:
             suffixIcon != null
