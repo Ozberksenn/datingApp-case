@@ -56,19 +56,22 @@ class _LoginViewState extends State<LoginView> {
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
                 SocialMediaWidget(),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
-                RichText(
-                  text: TextSpan(
-                    text: 'Bir Hesabın Yok Mu? ',
-                    style: AppFonts.greyText,
-                    children: [
-                      TextSpan(
-                        text: ' Kayıt Ol',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          decoration: TextDecoration.underline,
+                InkWell(
+                  onTap: () => context.push(AppRoutes.path(AppRoutes.register)),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Bir Hesabın Yok Mu? ',
+                      style: AppFonts.greyText,
+                      children: [
+                        TextSpan(
+                          text: ' Kayıt Ol',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 100.0),

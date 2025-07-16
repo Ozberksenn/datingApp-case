@@ -1,18 +1,16 @@
 import 'package:datingapp/features/view-model/register/register_cubit.dart';
+import 'package:datingapp/features/view/register/widgets/register_form.dart';
 import 'package:datingapp/features/widgets/custom_view.dart';
 import 'package:datingapp/features/widgets/snackbar_widgets.dart';
 import 'package:datingapp/product/constants/app_colors.dart';
 import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import '../../../product/constants/app_fonts.dart';
-import '../../../product/editors/text_field_widget.dart';
 import '../../view-model/register/register_state.dart';
-import '../../widgets/button.dart';
 import '../../widgets/padding.dart';
 import '../../widgets/social_media.dart';
+import 'widgets/register_header.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -26,18 +24,6 @@ class _RegisterViewState extends State<RegisterView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordAgainController = TextEditingController();
-
-  void register(BuildContext context) {
-    if (_passwordController.text == _passwordAgainController.text) {
-      context.read<RegisterCubit>().register(
-        _emailController.text,
-        _nameController.text,
-        _passwordController.text,
-      );
-    } else {
-      errorSnackabr(context, "şifreler uyum sağlamıyor.");
-    }
-  }
 
   void successRegister(RegisterState state) {
     successSnackbar(context, "Kullanıcı Başarıyla Oluşturuldu");
@@ -67,77 +53,14 @@ class _RegisterViewState extends State<RegisterView> {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Hoşgeldiniz",
-                    style: Theme.of(context).textTheme.titleLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 6.0),
-                Text(
-                  "Tempus varius a vitae interdum id tortor elementum tristique eleifend at.",
-                  style: Theme.of(context).textTheme.bodySmall,
-                  textAlign: TextAlign.center,
-                ),
                 CustomSizedBox.paddingHeight(heightValue: 24.0),
-                TextFieldWidget(
-                  controller: _nameController,
-                  prefixIcon: FontAwesomeIcons.envelope,
-                  labelText: "Ad Soyad",
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 10.0),
-                TextFieldWidget(
-                  controller: _emailController,
-                  prefixIcon: FontAwesomeIcons.envelope,
-                  labelText: "E-posta",
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 10.0),
-                TextFieldWidget(
-                  controller: _passwordController,
-                  prefixIcon: FontAwesomeIcons.unlockKeyhole,
-                  suffixIcon: Icons.remove_red_eye,
-                  labelText: "Şifre",
-                  obscure: true,
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 10.0),
-                TextFieldWidget(
-                  controller: _passwordAgainController,
-                  prefixIcon: FontAwesomeIcons.unlockKeyhole,
-                  labelText: "Şifre Tekrar",
-                  obscure: true,
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 12.0),
-                RichText(
-                  text: TextSpan(
-                    text: 'Kullanıcı sözleşmesini ',
-                    style: AppFonts.greyText,
-                    children: [
-                      TextSpan(
-                        text: 'okudum ve kabul ediyorum.',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' Bu sözleşmeyi okuyarak devam ediniz lütfen.',
-                        style: AppFonts.greyText,
-                      ),
-                    ],
-                  ),
-                ),
-                CustomSizedBox.paddingHeight(heightValue: 36.0),
-                SizedBox(
-                  width: double.infinity,
-                  child:
-                      state.isLoading == false
-                          ? Button(
-                            name: "Şimdi Kaydol",
-                            onTap: () => register(context),
-                          )
-                          : ButtonLoading(),
+                RegisterHeader(),
+                CustomSizedBox.paddingHeight(heightValue: 24.0),
+                RegisterForm(
+                  nameController: _nameController,
+                  emailController: _emailController,
+                  passwordController: _passwordController,
+                  passwordAgainController: _passwordAgainController,
                 ),
                 CustomSizedBox.paddingHeight(heightValue: 36.0),
                 SocialMediaWidget(),
