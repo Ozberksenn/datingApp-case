@@ -20,10 +20,9 @@ class _HomeViewState extends State<HomeView> {
       create: (_) => HomeCubit()..init(),
       child: BlocConsumer<HomeCubit, HomeState>(
         builder: (context, state) {
-          final homeState = context.watch<HomeCubit>().state;
           return Scaffold(
             body: IndexedStack(
-              index: homeState.currentIndex,
+              index: state.currentIndex,
               children: [Discover(), ProfieView()],
             ),
             bottomNavigationBar: BottomNavigationBarWidget(),

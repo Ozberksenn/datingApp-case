@@ -26,9 +26,7 @@ class LimitedOffer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        limitedOfferBottomSheet(context);
-      },
+      onTap: () => limitedOfferBottomSheet(context),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.buttonColor,
