@@ -3,6 +3,7 @@ import 'package:datingapp/features/view/register/widgets/register_form.dart';
 import 'package:datingapp/features/widgets/custom_view.dart';
 import 'package:datingapp/features/widgets/snackbar_widgets.dart';
 import 'package:datingapp/product/constants/app_colors.dart';
+import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:datingapp/product/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,14 +70,14 @@ class _RegisterViewState extends State<RegisterView> {
                   onTap: () => context.push(AppRoutes.path(AppRoutes.login)),
                   child: RichText(
                     text: TextSpan(
-                      text: 'Zaten Bir Hesabın Var mı?  ',
+                      text: context.loc.alreadyAccount,
                       style: TextStyle(
                         color: AppColors.lightGrey,
                         fontSize: 14,
                       ),
                       children: [
                         TextSpan(
-                          text: 'Giriş Yap',
+                          text: "  ${context.loc.login}",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],

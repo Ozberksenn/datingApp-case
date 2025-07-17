@@ -1,4 +1,5 @@
 import 'package:datingapp/features/view-model/login/login_cubit.dart';
+import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class LoginForm extends StatelessWidget {
         TextFieldWidget(
           controller: emailController,
           prefixIcon: FontAwesomeIcons.envelope,
-          labelText: "E-posta",
+          labelText: context.loc.email,
         ),
         CustomSizedBox.paddingHeight(heightValue: 14.0),
         TextFieldWidget(
@@ -48,12 +49,12 @@ class LoginForm extends StatelessWidget {
                   : CupertinoIcons.eye_slash_fill,
           obscure: cubit.state.isObscuere,
           onTapSuffix: () => context.read<LoginCubit>().changeObscureState(),
-          labelText: "Şifre",
+          labelText: context.loc.password,
         ),
         CustomSizedBox.paddingHeight(heightValue: 24.0),
         RichText(
           text: TextSpan(
-            text: 'Şifremi Unuttum',
+            text: context.loc.forgotPassword,
             style: TextStyle(
               color: Colors.white,
               decoration: TextDecoration.underline,
@@ -65,7 +66,10 @@ class LoginForm extends StatelessWidget {
           width: double.infinity,
           child:
               cubit.state.isLoading == false
-                  ? Button(name: "Giriş Yap", onTap: () => submit(context))
+                  ? Button(
+                    name: context.loc.login,
+                    onTap: () => submit(context),
+                  )
                   : ButtonLoading(),
         ),
       ],

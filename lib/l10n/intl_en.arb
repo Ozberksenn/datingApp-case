@@ -1,0 +1,17 @@
+{
+  "title": "Hello !",
+  "email" : "E-mail",
+  "password" : "Password",
+  "forgotPassword" : "Forgot Password",
+  "login" : "Login",
+  "signup" : "Sign Up",
+  "dontHaveAnAccount" : "Don't you have an account?",
+  "registerTitle" : "Welcome",
+  "registerButton" : "Sign Up Now",
+  "alreadyAccount" : "Do You Already Have An Account?",
+  "registerAgreementFirst" : "User agreement",
+  "registerAgreementSecond" : "i have read and accept.",
+  "registerAgreementThirth" : "Please continue by reading this agreement.",
+  "name" : "Name",
+  "againPassword" : "Password Again"
+}

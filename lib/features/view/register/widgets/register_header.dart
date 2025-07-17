@@ -1,3 +1,4 @@
+import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/padding.dart';
 
@@ -11,7 +12,7 @@ class RegisterHeader extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(
-            "Hoşgeldiniz",
+            context.loc.registerTitle,
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),

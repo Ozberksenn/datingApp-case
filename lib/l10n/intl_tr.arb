@@ -1,0 +1,17 @@
+{
+  "title": "Merhabalar",
+  "email" : "E-posta",
+  "password" : "Şifre",
+  "forgotPassword" : "Şifremi Unuttum",
+  "login" : "Giriş Yap",
+  "signup" : "Kayıt Ol",
+  "dontHaveAnAccount" : "Bir Hesabın Yok Mu?",
+  "registerTitle" : "Hoşgeldiniz",
+  "registerButton" : "Şimdi Kaydol",
+  "alreadyAccount" : "Zaten Bir Hesabın Var Mı?",
+  "registerAgreementFirst" : "Kullanıcı Sözleşmesini",
+  "registerAgreementSecond" : "okudum ve kabul ediyorum.",
+  "registerAgreementThirth" : "Bu Sözleşmeyi okuyarak devam ediniz lütfen.",
+  "name" : "Ad Soyad",
+  "againPassword" : "Şifre Tekrar"
+}

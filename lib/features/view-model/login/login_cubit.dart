@@ -13,6 +13,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(isObscuere: !state.isObscuere));
   }
 
+  void changeLanguage(String value) {
+    emit(state.copyWith(language: value));
+  }
+
   Future<void> login(String email, String password) async {
     emit(state.copyWith(isLoading: true, errorMessage: null, isSuccess: null));
     ApiResponseModel response = await AppService.instance.postData(

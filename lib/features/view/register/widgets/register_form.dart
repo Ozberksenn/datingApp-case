@@ -1,4 +1,5 @@
 import 'package:datingapp/features/view-model/register/register_cubit.dart';
+import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,44 +44,44 @@ class RegisterForm extends StatelessWidget {
         TextFieldWidget(
           controller: nameController,
           prefixIcon: FontAwesomeIcons.envelope,
-          labelText: "Ad Soyad",
+          labelText: context.loc.name,
         ),
         CustomSizedBox.paddingHeight(heightValue: 10.0),
         TextFieldWidget(
           controller: emailController,
           prefixIcon: FontAwesomeIcons.envelope,
-          labelText: "E-posta",
+          labelText: context.loc.email,
         ),
         CustomSizedBox.paddingHeight(heightValue: 10.0),
         TextFieldWidget(
           controller: passwordController,
           prefixIcon: FontAwesomeIcons.unlockKeyhole,
           suffixIcon: Icons.remove_red_eye,
-          labelText: "Şifre",
+          labelText: context.loc.password,
           obscure: true,
         ),
         CustomSizedBox.paddingHeight(heightValue: 10.0),
         TextFieldWidget(
           controller: passwordAgainController,
           prefixIcon: FontAwesomeIcons.unlockKeyhole,
-          labelText: "Şifre Tekrar",
+          labelText: context.loc.againPassword,
           obscure: true,
         ),
         CustomSizedBox.paddingHeight(heightValue: 12.0),
         RichText(
           text: TextSpan(
-            text: 'Kullanıcı sözleşmesini ',
+            text: context.loc.registerAgreementFirst,
             style: AppFonts.greyText,
             children: [
               TextSpan(
-                text: 'okudum ve kabul ediyorum.',
+                text: " ${context.loc.registerAgreementSecond} ",
                 style: TextStyle(
                   color: AppColors.white,
                   decoration: TextDecoration.underline,
                 ),
               ),
               TextSpan(
-                text: ' Bu sözleşmeyi okuyarak devam ediniz lütfen.',
+                text: context.loc.registerAgreementThirth,
                 style: AppFonts.greyText,
               ),
             ],
@@ -91,7 +92,10 @@ class RegisterForm extends StatelessWidget {
           width: double.infinity,
           child:
               cubit.state.isLoading == false
-                  ? Button(name: "Şimdi Kaydol", onTap: () => register(context))
+                  ? Button(
+                    name: context.loc.registerButton,
+                    onTap: () => register(context),
+                  )
                   : ButtonLoading(),
         ),
       ],

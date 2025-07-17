@@ -1,3 +1,4 @@
+import 'package:datingapp/product/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/padding.dart';
 
@@ -11,7 +12,7 @@ class LoginHeader extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(
-            "Merhabalar",
+            context.loc.title,
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
